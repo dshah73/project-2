@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+     <link rel="stylesheet" type="text/css" href="stylechinese.css"/>
+
+    <script src='./DATA.js'></script>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:70%; }
+    </style>
+</head>
+<body>
+
+<img src="Screen Shot 2017-09-14 at 2.32.56 pm.png" style="width:25%;" />
+
+<div id='map'>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFtbXN5ZWQiLCJhIjoiY2o3ZnE3anNxMTBteDJ3cXVmaHF2bDA1biJ9.e5HaduLW7r7Et1CPj7bgNg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [151, -34],
+    zoom: 9,
+    pitch: 40,
+    bearing: 20
+});
+
+map.on('load', function() {
+
+    map.addLayer({
+        'id': 'room-extrusion',
+        'type': 'fill-extrusion',
+        'source': {
+            // Geojson Data source used in vector tiles, documented at
+            // https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
+            'type': 'geojson',
+            'data': DATA
+        },
+        'paint': {
+            // See the Mapbox Style Spec for details on property functions
+            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
+            'fill-extrusion-color': {
+                // Get the fill-extrusion-color from the source 'color' property.
+                'property': 'Den_Chi', //export with a colour property
+                "stops": [
+                [0, 'white'],
+                [50,'orange'],
+                [300,'red']
+                ]
+            },
+            'fill-extrusion-height': {
+                // Get fill-extrusion-height from the source 'height' property.
+                'property': 'Inc_Chi',
+                "stops": [
+                [0.2, 0],
+                [1,3000]
+                ]
+            },
+            'fill-extrusion-base': 0,
+            //Make extrusions slightly opaque for see through indoor walls.
+            'fill-extrusion-opacity': 0.8
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

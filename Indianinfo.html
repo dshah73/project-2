@@ -1,0 +1,109 @@
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='./DATA.js'></script>
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFtbXN5ZWQiLCJhIjoiY2o3ZnE3anNxMTBteDJ3cXVmaHF2bDA1biJ9.e5HaduLW7r7Et1CPj7bgNg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9',
+    center: [151, -34],
+    zoom: 9,
+    pitch: 40,
+    bearing: 20
+});
+
+map.on('load', function() {
+
+    map.addLayer({
+        'id': 'room-extrusion',
+        'type': 'fill-extrusion',
+        'source': {
+            // Geojson Data source used in vector tiles, documented at
+            // https://gist.github.com/ryanbaumann/a7d970386ce59d11c16278b90dde094d
+            'type': 'geojson',
+            'data': DATA
+        },
+        'paint': {
+            // See the Mapbox Style Spec for details on property functions
+            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
+            'fill-extrusion-color': {
+                // Get the fill-extrusion-color from the source 'color' property.
+                'property': 'Den_Ind', //export with a colour property
+                "stops": [
+                [0, 'white'],
+                [50,'orange'],
+                [300,'red']
+                ]
+            },
+            'fill-extrusion-height': {
+                // Get fill-extrusion-height from the source 'height' property.
+                'property': 'Inc_Ind',
+                "stops": [
+                [0.2, 0],
+                [1,3000]
+                ]
+            },
+            'fill-extrusion-base': 0,
+            //Make extrusions slightly opaque for see through indoor walls.
+            'fill-extrusion-opacity': 0.9
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+ 
+
+<!DOCTYPE html>
+<html>
+
+<header>
+
+<nav>
+<h1>Growth of Ancestries based on Locations</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="chapter 1.html">Chapter 1</a></li>
+<li><a href="chapter 2.html">Chapter 2</a></li>
+<li><a href="chapter 3.html">Chapter 3</a></li>
+<li><a href="conclusion.html">Conclusion</a></li>
+
+
+</ul>
+</nav>
+</header>
+<link rel="stylesheet" type="text/css" href="style1.css"/>
+
+
+<body>
+
+
+<p> text here </p>
+
+
+<footer>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+body {
+
+margin: 0;
+background: aliceblue;
+
+
+}
+
+header{
+background:antiquewhite;
+color: black;
+padding: 30px 0px;
+
+}
+
+ h1 {
+	margin: 0;
+	text-align: left;
+	margin-left: 180px;
+	font-size: 34px;
+	font-family: fantasy;
+	font-weight: lighter;
+
+
+}
+
+nav ul {
+	margin:50;
+	text-align: left;
+	margin-left: 135px
+}
+
+nav ul li {
+	list-style-type: none;
+	display: inline-block;
+	background: black;
+	color: white;
+	padding: 10px 20px;
+	margin: 0px 5px;
+
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+
+}
+
+p{font-size:17px;
+	font-family: times;
+	margin: 42px 180px ;
+
+
+}
+
+img {
+	margin: 0px 900px 500px;
+	position: absolute; top:220px;
+	background: aliceblue;
+}
+
+iframe {
+
+	margin: 0px 180px 0px;
+	position: absolute; top:225px;
+}
+
+footer{
+	background:antiquewhite;
+	position: fixed;
+	bottom: 0;
+	font-size: 14px;
+	padding: 30px 1000px;
+}
